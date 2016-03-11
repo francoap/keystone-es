@@ -120,19 +120,19 @@ module.exports = Field.create({
 		if (this.hasLocal()) {
 			return (
 				<div className='upload-queued pull-left'>
-					<div className='alert alert-success'>File selected - save to upload</div>
+					<div className='alert alert-success'>Archivo seleccionado - click en guardar para subir</div>
 				</div>
 			);
 		} else if (this.state.origin === 'cloudinary') {
 			return ( 
 				<div className='select-queued pull-left'>
-					<div className='alert alert-success'>File selected from Cloudinary</div>
+					<div className='alert alert-success'>Archivo seleccionado desde Cloudinary</div>
 				</div>
 			);
 		} else if (this.state.removeExisting) {
 			return (
 				<div className='delete-queued pull-left'>
-					<div className='alert alert-danger'>File {this.props.autoCleanup ? 'deleted' : 'removed'} - save to confirm</div>
+					<div className='alert alert-danger'>Archivo {this.props.autoCleanup ? 'eliminado' : 'quitado'} - click en guardar para confirmar</div>
 				</div>
 			);
 		} else {
@@ -144,15 +144,15 @@ module.exports = Field.create({
 		if (this.state.removeExisting) {
 			return (
 				<button type='button' className='btn btn-link btn-cancel btn-undo-file' onClick={this.undoRemove}>
-					Undo Remove
+					Deshacer 'quitar'
 				</button>
 			);
 		} else {
 			var clearText;
 			if (this.hasLocal()) {
-				clearText = 'Cancel Upload';
+				clearText = 'Cancelar Subida';
 			} else {
-				clearText = (this.props.autoCleanup ? 'Delete File' : 'Remove File');
+				clearText = (this.props.autoCleanup ? 'Eliminar Archivo' : 'Quitar Archivo');
 			}
 			return (
 				<button type='button' className='btn btn-link btn-cancel btn-delete-file' onClick={this.removeFile}>
@@ -175,7 +175,7 @@ module.exports = Field.create({
 			<div key={this.props.path + '_toolbar'} className='file-toolbar'>
 				<div className='pull-left'>
 					<button type='button' onClick={this.changeFile} className='btn btn-default btn-upload-file'>
-						{this.hasFile() ? 'Change' : 'Upload'} File
+						{this.hasFile() ? 'Cambiar' : 'Subir'} Archivo
 					</button>
 					{this.hasFile() && this.renderClearButton()}
 				</div>
@@ -202,7 +202,7 @@ module.exports = Field.create({
 			if (hasFile) {
 				container.push(this.renderFileDetails());
 			} else {
-				container.push(<div className='help-block'>no file</div>);
+				container.push(<div className='help-block'>no hay archivo</div>);
 			}
 		}
 

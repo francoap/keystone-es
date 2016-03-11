@@ -205,19 +205,19 @@ module.exports = Field.create({
 		if (this.hasLocal()) {
 			return (
 				<div className='upload-queued pull-left'>
-					<div className='alert alert-success'>Image selected - save to upload</div>
+					<div className='alert alert-success'>Imagen seleccionada - click en guardar para subir</div>
 				</div>
 			);
 		} else if (this.state.origin === 'cloudinary') {
 			return (
 				<div className='select-queued pull-left'>
-					<div className='alert alert-success'>Image selected from Cloudinary</div>
+					<div className='alert alert-success'>Imagen seleccionada desde Cloudinary</div>
 				</div>
 			);
 		} else if (this.state.removeExisting) {
 			return (
 				<div className='delete-queued pull-left'>
-					<div className='alert alert-danger'>Image {this.props.autoCleanup ? 'deleted' : 'removed'} - save to confirm</div>
+					<div className='alert alert-danger'>Imagen {this.props.autoCleanup ? 'eliminada' : 'quitada'} - click en guardar para confirmar</div>
 				</div>
 			);
 		} else {

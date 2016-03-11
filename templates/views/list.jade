@@ -45,24 +45,24 @@ block content
 			if items.total
 				span.items-total= utils.plural(items.total, '* ' + list.singular, '* ' + list.plural) + ' '
 			else
-				span.items-total No #{list.plural.toLowerCase()} found
+				span.items-total No se encontraron #{list.plural.toLowerCase()}
 					= search || xFilters ? ' ' : '.'
 
 			.search-sort(style='display:inline-block')
 				if search
-					span.text-muted  matching 
+					span.text-muted  que correspondan con 
 					span=search
 					if xFilters
-						span.text-muted  and
-						span= utils.plural(xFilters, ' * other filter')
+						span.text-muted  y
+						span= utils.plural(xFilters, ' * otro filtro')
 				else if xFilters
-					span.text-muted  matching 
-					span= utils.plural(xFilters, ' * filter')
+					span.text-muted  que correspondan con
+					span= utils.plural(xFilters, ' * filtro')
 			
 				//- Sort
 				if items.results.length
 					if sort.by
-						span.text-muted &nbsp;ordered by&nbsp;
+						span.text-muted &nbsp;ordenados por&nbsp;
 					else
 						span.text-muted &mdash;
 					span.dropdown.list-sort-dropdown
@@ -70,24 +70,24 @@ block content
 							if sort.label
 								= sort.label.toLowerCase() + ' '
 								if sort.inv
-									|  (descending)
+									|  (descendiente)
 							else
-								| sort by
+								| ordenar por
 							b.caret
 						ul.dropdown-menu
 							if list.get('sortable')
 								if sort.by == 'sortOrder'
 									li: a(href=link_to({sort: '-sortOrder'}))
 										span(class='fieldicon fieldicon-sort')
-										span Display Order (inverted)
+										span Mostrar en Orden (invertido)
 								else if sort.by == '-sortOrder'
 									li: a(href=link_to({sort: 'sortOrder'}))
 										span(class='fieldicon fieldicon-sort')
-										span Display Order (normal)
+										span Mostrar en Orden (normal)
 								else
 									li: a(href=link_to({sort: 'sortOrder'}))
 										span(class='fieldicon fieldicon-sort')
-										span Display Order
+										span Mostrar en Orden
 							each el in list.uiElements
 								if el.type == 'heading'
 									li.dropdown-header= el.heading
@@ -113,29 +113,29 @@ block content
 											if sort.inv
 												li: a(href=link_to({ sort: list.tracking.createdAt }))
 													span(class='fieldicon fieldicon-date')
-													span Date Created (ascending)
+													span Fecha de Creacion (ascendiente)
 											else
 												li: a(href=link_to({ sort: '-' + list.tracking.createdAt }))
 													span(class='fieldicon fieldicon-date')
-													span Date Created (descending)
+													span Fecha de Creacion (descendiente)
 										else
 											li: a(href=link_to({ sort: list.tracking.createdAt }))
 												span(class='fieldicon fieldicon-date')
-												span Date Created
+												span Fecha de Creacion
 									if list.tracking.updatedAt
 										if sort.path == 'updatedAt'
 											if sort.inv
 												li: a(href=link_to({ sort: list.tracking.updatedAt }))
 													span(class='fieldicon fieldicon-date')
-													span Date Modified (ascending)
+													span Fecha de Modificacion (ascendiente)
 											else
 												li: a(href=link_to({ sort: '-' + list.tracking.updatedAt }))
 													span(class='fieldicon fieldicon-date')
-													span Date Modified (descending)
+													span Fecha de Modificacion (descendiente)
 										else
 											li: a(href=link_to({ sort: list.tracking.updatedAt }))
 												span(class='fieldicon fieldicon-date')
-												span Date Modified
+												span Fecha de Modificacion
 		
 		
 		//-
@@ -151,21 +151,21 @@ block content
 					.search-list
 						.form-inline
 							.dropdown-inline.list-filter-dropdown.js-recent-searches.hidden.mr-5
-								button(type='button', data-toggle='dropdown', title='Recent Filters').btn.btn-default.dropdown-toggle
-									span.sr-only Recent Filters
+								button(type='button', data-toggle='dropdown', title='Filtros Recientes').btn.btn-default.dropdown-toggle
+									span.sr-only Filtros Recientes
 									span.ion-clock
 									|  
 									span.caret
 								ul.dropdown-menu
-									li.dropdown-header Recent Filters
+									li.dropdown-header Filtros Recientes
 							.form-inline.searchbox-form.mr-5
 								.searchbox-field
-									input(type='search', name='search', placeholder='Search #{list.plural.toLowerCase()}', value=search).form-control.js-search-list.searchbox-input
+									input(type='search', name='search', placeholder='Buscar #{list.plural.toLowerCase()}', value=search).form-control.js-search-list.searchbox-input
 									if search
-										a(href='/keystone/#{list.path}', title='Clear search').search-list-clear &times;
+										a(href='/keystone/#{list.path}', title='Limpiar busqueda').search-list-clear &times;
 								.searchbox-button: button(type='submit').btn.btn-default.btn-search.searchbox-submit
-									span.visible-xs Go
-									span.hidden-xs Search
+									span.visible-xs Ir
+									span.hidden-xs Buscar
 							//- .search-field
 								input(type='text', name='search', placeholder='Search ' + list.plural.toLowerCase(), value=search).form-control
 							//- span.search-button: button(type='submit').btn.btn-default.btn-search
@@ -173,7 +173,7 @@ block content
 								span.hidden-xs Search
 							.dropdown-inline.list-filter-dropdown
 								button(type='button', data-toggle='dropdown').btn.btn-default.dropdown-toggle
-									| Add Filter 
+									| Agregar filtro 
 									b.caret
 								ul.dropdown-menu: each el in list.uiElements
 									if el.type == 'heading'
@@ -188,10 +188,10 @@ block content
 					if items.total
 						.pull-right.hidden-xs
 							.pull-right
-								a(href=download_link, data-confirm="Download a .csv of #{utils.plural(items.total, '* ' + list.singular, '* ' + list.plural).toLowerCase()}?").btn.btn-default Download
+								a(href=download_link, data-confirm="Descargar un .csv de #{utils.plural(items.total, '* ' + list.singular, '* ' + list.plural).toLowerCase()}?").btn.btn-default Descargar
 							div(style='margin-right: 10px;').dropdown.list-columns-dropdown.pull-right
 								button(type='button', data-toggle='dropdown').btn.btn-default.dropdown-toggle
-									| Columns 
+									| Columnas 
 									b.caret
 								ul.dropdown-menu
 									each el in list.uiElements
@@ -206,16 +206,16 @@ block content
 											if list.tracking.createdAt
 												li: a(href=js, data-col=list.tracking.createdAt).btn-toggle-column
 													span(class=_.contains(colPaths, list.tracking.createdAt) ? 'ion-checkmark' : '').icon
-													span Date Created
+													span Fecha de Creacion
 											if list.tracking.updatedAt
 												li: a(href=js, data-col=list.tracking.updatedAt).btn-toggle-column
 													span(class=_.contains(colPaths, list.tracking.updatedAt) ? 'ion-checkmark' : '').icon
-													span Date Modified
+													span Fecha de Modificacion
 									if query.cols
 										li.divider
 										li: a(href=link_to({ cols: undefined }))
 											span.ion-close.icon
-											span Reset to default
+											span Restaurar
 			
 			
 			//-
@@ -226,7 +226,7 @@ block content
 					if !field.nofilter && !field.hidden
 						.filter(data-path=field.path, data-type=field.type, class=filters[field.path] ? 'active' : '')
 							.filter-label
-								a(href=js, title='Remove filter', data-toggle='tooltip', data-placement='right', data-container='body').btn-companion-xs.clear-filter &times;
+								a(href=js, title='Eliminar filtro', data-toggle='tooltip', data-placement='right', data-container='body').btn-companion-xs.clear-filter &times;
 								span(class='fieldicon fieldicon-' + field.type)
 								.btn-companion-xs=field.label
 							.filter-options
@@ -236,35 +236,35 @@ block content
 									.btn-group.btn-group-xs(data-toggle='buttons')
 										button(type='button', class=!ops.exact ? 'active' : '').btn.btn-default
 											input(type='radio', name='options')
-											| contains
+											| contiene
 										button(type='button', class=ops.exact ? 'active' : '', data-opt='exact', data-value='true').btn.btn-default
 											input(type='radio', name='options')
-											| exact match
+											| correspondencia exacta
 									.filter-input.filter-input-md: input(type='text', name='value', value=ops.value).form-control.input-xs
-									button(type='button', data-toggle='button', class=ops.inverse ? 'active' : '', data-opt='inv', data-value='true').btn.btn-xs.btn-default invert
+									button(type='button', data-toggle='button', class=ops.inverse ? 'active' : '', data-opt='inv', data-value='true').btn.btn-xs.btn-default invertir
 								
 								//- Numeric Fields
 								if field.type == 'number' || field.type == 'money'
 									.btn-group.btn-group-operator.btn-group-xs(data-toggle='buttons')
 										button(type='button', class=!ops.operator ? 'active' : '').btn.btn-default
 											input(type='radio', name='options')
-											| exactly
+											| exactamente
 										button(type='button', class=ops.operator == 'gt' ? 'active' : '', data-opt='operator', data-value='gt').btn.btn-default
 											input(type='radio', name='options')
-											| greater than
+											| mayor que
 										button(type='button', class=ops.operator == 'lt' ? 'active' : '', data-opt='operator', data-value='lt').btn.btn-default
 											input(type='radio', name='options')
-											| less than
+											| menor que
 										button(type='button', class=ops.operator == 'bt' ? 'active' : '', data-opt='operator', data-value='bt').btn.btn-default
 											input(type='radio', name='options')
-											| between
+											| entre
 								
 									.filter-input
 										.filter-input-range.form-inline.text-sm(style='display:none')
 											input(type='number', value=(ops.operator === 'bt' && ops.value[0])).form-control.input-xs.field-inline--xs.filter-input-range1
-											span.mh-1 and
+											span.mh-1 y
 											input(type='number', value=(ops.operator === 'bt' && ops.value[1])).form-control.input-xs.field-inline--xs.filter-input-range2
-											span.mh-1 (inclusive)
+											span.mh-1 (inclusivo)
 										.filter-input-standard(style='display:none')
 											input(type='number', name='value', value=(ops.operator !== 'bt' && ops.value)).form-control.input-xs
 							
@@ -273,23 +273,23 @@ block content
 									.btn-group.btn-group-operator.btn-group-xs(data-toggle='buttons')
 										button(type='button', class=(!ops.operator) ? 'active' : '').btn.btn-default
 											input(type='radio', name='options')
-											| on
+											| en
 										button(type='button', class=ops.operator == 'gt' ? 'active' : '', data-opt='operator', data-value='gt').btn.btn-default
 											input(type='radio', name='options')
-											| after
+											| despues de
 										button(type='button', class=ops.operator == 'lt' ? 'active' : '', data-opt='operator', data-value='lt').btn.btn-default
 											input(type='radio', name='options')
-											| before
+											| antes que
 										button(type='button', class=ops.operator == 'bt' ? 'active' : '', data-opt='operator', data-value='bt').btn.btn-default
 											input(type='radio', name='options')
-											| between
+											| entre
 								
 									.filter-input
 										.filter-input-range.form-inline.text-sm(style='display:none')
 											input(type='text', value=(ops.operator === 'bt' && ops.value[0])).form-control.input-xs.field-inline--sm.ui-datepicker.filter-input-range1
-											span.mh-1 and
+											span.mh-1 y
 											input(type='text', value=(ops.operator === 'bt' && ops.value[1])).form-control.input-xs.field-inline--sm.ui-datepicker.filter-input-range2
-											span.mh-1 (inclusive)
+											span.mh-1 (inclusivo)
 										.filter-input-standard(style='display:none')
 											input(type='text', name='value', value=(ops.operator !== 'bt' && ops.value)).form-control.input-xs.ui-datepicker
 								
@@ -307,10 +307,10 @@ block content
 									.btn-group.btn-group-xs(data-toggle='buttons')
 										button(type='button', class=!ops.inverse ? 'active' : '').btn.btn-default
 											input(type='radio', name='options')
-											| is
+											| es
 										button(type='button', class=ops.inverse ? 'active' : '', data-opt='inv', data-value='true').btn.btn-default
 											input(type='radio', name='options')
-											| is not
+											| no es
 									.filter-input.filter-input-md: select(name='value')
 										option(value='')
 										each op in field.ops
@@ -321,50 +321,50 @@ block content
 									.btn-group.btn-group-xs(data-toggle='buttons')
 										button(type='button', class=ops.value !== false && ops.value !== 'false' ? 'active' : '', data-opt='value', data-value='true').btn.btn-default
 											input(type="radio", name="options")
-											| checked
+											| chequeado
 										button(type='button', class=ops.value === false || ops.value === 'false' ? 'active' : '', data-opt='value', data-value='false').btn.btn-default
 											input(type="radio", name="options")
-											| not checked
+											| no chequeado
 								
 								//- Cloudinary Image
 								if field.type == 'cloudinaryimage'
 									.btn-group.btn-group-xs(data-toggle='buttons')
 										button(type='button', class=ops.value !== false ? 'active' : '', data-opt='value', data-value='true').btn.btn-default
 											input(type="radio", name="options")
-											| has image
+											| con imagen
 										button(type='button', class=ops.value === false ? 'active' : '', data-opt='value', data-value='false').btn.btn-default
 											input(type="radio", name="options")
-											| has no image
+											| sin imagen
 								
 								//- S3 File
 								if field.type == 's3file'
 									.btn-group.btn-group-xs(data-toggle='buttons')
 										button(type='button', class=ops.value !== false ? 'active' : '', data-opt='value', data-value='true').btn.btn-default
 											input(type="radio", name="options")
-											| has file
+											| con archivo
 										button(type='button', class=ops.value === false ? 'active' : '', data-opt='value', data-value='false').btn.btn-default
 											input(type="radio", name="options")
-											| has no file
+											| sin archivo
 
 								//- Local File
 								if field.type == 'localfile'
 									.btn-group.btn-group-xs(data-toggle='buttons')
 										button(type='button', class=ops.value !== false ? 'active' : '', data-opt='value', data-value='true').btn.btn-default
 											input(type="radio", name="options")
-											| has file
+											| con archivo
 										button(type='button', class=ops.value === false ? 'active' : '', data-opt='value', data-value='false').btn.btn-default
 											input(type="radio", name="options")
-											| has no file
+											| sin archivo
 								
 								//- Relationships
 								if field.type == 'relationship'
 									.btn-group.btn-group-xs(data-toggle='buttons')
 										button(type='button', class=ops.inverse ? '' : 'active', data-opt='inv', data-value='false').btn.btn-default
 											input(type="radio", name="options")
-											| linked to
+											| relacionado a
 										button(type='button', class=ops.inverse ? 'active' : '', data-opt='inv', data-value='true').btn.btn-default
 											input(type="radio", name="options")
-											| not linked to
+											| no relacionado a
 									input(type='hidden',
 										name=field.path,
 										id='field_' + field.path,
@@ -374,8 +374,8 @@ block content
 										data-ref-plural=field.refList.plural).ui-select2-ref
 								
 				.list-filters-action
-					button(type='submit').btn.btn-default.btn-filter Search
-					a(href='/keystone/#{list.path}').btn.btn-link.btn-cancel clear filters
+					button(type='submit').btn.btn-default.btn-filter Buscar
+					a(href='/keystone/#{list.path}').btn.btn-link.btn-cancel limpiar filtros
 			
 	if items.results.length
 		//-
@@ -386,7 +386,7 @@ block content
 			if items.totalPages > 1
 				+pagination(items)
 			else
-				.count Showing #{utils.plural(items.total, '* ' + list.singular, '* ' + list.plural)}
+				.count Mostrando #{utils.plural(items.total, '* ' + list.singular, '* ' + list.plural)}
 		
 		
 		- var sortable = list.get('sortable') && !list.get('sortContext') && sort.by == 'sortOrder'
@@ -406,15 +406,15 @@ block content
 						th(colspan=i == 0 && firstColspan > 1 ? firstColspan : false)
 							if col.field && sort.field && sort.field.path == col.field.path
 								if sort.inv
-									a(href=link_to({ sort: col.field.path }), title='Sort by ' + col.label + ' (asc)', class='th-sort--desc').th-sort
+									a(href=link_to({ sort: col.field.path }), title='Ordenar por ' + col.label + ' (asc)', class='th-sort--desc').th-sort
 										= col.label
 										span.th-sort__icon
 								else
-									a(href=link_to({ sort: '-' + col.field.path }), title='Sort by ' + col.label + ' (desc)', class='th-sort--asc').th-sort
+									a(href=link_to({ sort: '-' + col.field.path }), title='Ordenar por ' + col.label + ' (desc)', class='th-sort--asc').th-sort
 										= col.label
 										span.th-sort__icon
 							else if col.field
-								a(href=link_to({ sort: col.field.path }), title='Sort by ' + col.label).th-sort= col.label
+								a(href=link_to({ sort: col.field.path }), title='Ordenar por ' + col.label).th-sort= col.label
 									span.th-sort__icon
 							else
 								= col.label

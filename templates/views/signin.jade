@@ -8,12 +8,12 @@ block content
 			
 		.auth-box-col
 			if user
-				p.lead Hi #{user.name.first},
-				p.lead You're already signed in.
+				p.lead Hola #{user.name.first}!,
+				p.lead Ya has iniciado sesion.
 				.toolbar
 					if user.isAdmin
-						a(href='/keystone').btn.btn-primary Open Keystone
-					a(href='/keystone/signout').btn.btn-cancel Sign out
+						a(href='/keystone').btn.btn-primary Abrir Keystone
+					a(href='/keystone/signout').btn.btn-cancel Salir
 			
 			else
 				form(method="post", novalidate).auth-form
@@ -22,10 +22,10 @@ block content
 						label(for='email') Email
 						input(type='email', name='email', id='email', value=submitted.email).form-control
 					.form-group
-						label(for='password') Password
+						label(for='password') Contraseña
 						input(type='password', name='password', id='password').form-control
 					
-					button(type='submit').btn.btn-primary Sign In
+					button(type='submit').btn.btn-primary Iniciar Sesion
 				
 				//- TODO generic forgotten password functionality
 				//- button(type='button').btn.btn-link Forgot Password?

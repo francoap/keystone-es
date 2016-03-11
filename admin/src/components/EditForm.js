@@ -61,7 +61,7 @@ var EditForm = React.createClass({
 			
 		} else {
 			return wrapNameField(
-				<h2 className="form-heading name-value">{this.props.data.name || '(no name)'}</h2>
+				<h2 className="form-heading name-value">{this.props.data.name || '(sin nombre)'}</h2>
 			);
 		}
 	},
@@ -79,7 +79,7 @@ var EditForm = React.createClass({
 			if (data.createdAt) {
 				elements.createdAt = (
 					<div className="item-details-meta-item">
-						<span className="item-details-meta-label">Created</span>
+						<span className="item-details-meta-label">Creado</span>
 						<span className="item-details-meta-info">{moment(data.createdAt).format('Do MMM YY h:mm:ssa')}</span>
 					</div>
 				);
@@ -89,7 +89,7 @@ var EditForm = React.createClass({
 		if (this.props.list.tracking.createdBy) {
 			data.createdBy = this.props.data.fields[this.props.list.tracking.createdBy];
 			if (data.createdBy) {
-				label = data.createdAt ? 'by' : 'Created by';
+				label = data.createdAt ? 'por' : 'Creado por';
 				// todo: harden logic around user name
 				elements.createdBy = (
 					<div className="item-details-meta-item">
@@ -105,7 +105,7 @@ var EditForm = React.createClass({
 			if (data.updatedAt && (!data.createdAt || data.createdAt !== data.updatedAt)) {
 				elements.updatedAt = (
 					<div className="item-details-meta-item">
-						<span className="item-details-meta-label">Updated</span>
+						<span className="item-details-meta-label">Actualizado</span>
 						<span className="item-details-meta-info">{moment(data.updatedAt).format('Do MMM YY h:mm:ssa')}</span>
 					</div>
 				);
@@ -115,7 +115,7 @@ var EditForm = React.createClass({
 		if (this.props.list.tracking.updatedBy) {
 			data.updatedBy = this.props.data.fields[this.props.list.tracking.updatedBy];
 			if (data.updatedBy && (!data.createdBy || data.createdBy.id !== data.updatedBy.id || elements.updatedAt)) {
-				label = data.updatedAt ? 'by' : 'Created by';
+				label = data.updatedAt ? 'por' : 'Creado por';
 				elements.updatedBy = (
 					<div className="item-details-meta-item">
 						<span className="item-details-meta-label">{label}</span>
@@ -175,14 +175,14 @@ var EditForm = React.createClass({
 		var toolbar = {};
 		
 		if (!this.props.list.noedit) {
-			toolbar.save = <button type="submit" className="btn btn-save">Save</button>;
+			toolbar.save = <button type="submit" className="btn btn-save">Guardar</button>;
 			// TODO: Confirm: Use React & Modal
-			toolbar.reset = <a href={'/keystone/' + this.props.list.path + '/' + this.props.data.id} className="btn btn-link btn-cancel" data-confirm="Are you sure you want to reset your changes?">reset changes</a>;
+			toolbar.reset = <a href={'/keystone/' + this.props.list.path + '/' + this.props.data.id} className="btn btn-link btn-cancel" data-confirm="Seguro que quieres restaurar los cambios?">restaurar cambios</a>;
 		}
 		
 		if (!this.props.list.noedit && !this.props.list.nodelete) {
 			// TODO: Confirm: Use React & Modal
-			toolbar.del = <a href={'/keystone/' + this.props.list.path + '?delete=' + this.props.data.id + Keystone.csrf.query} className="btn btn-link btn-cancel delete" data-confirm={'Are you sure you want to delete this?' + this.props.list.singular.toLowerCase()}>delete {this.props.list.singular.toLowerCase()}</a>;
+			toolbar.del = <a href={'/keystone/' + this.props.list.path + '?delete=' + this.props.data.id + Keystone.csrf.query} className="btn btn-link btn-cancel delete" data-confirm={'Seguro que quiere eliminar esto?' + this.props.list.singular.toLowerCase()}>eliminar {this.props.list.singular.toLowerCase()}</a>;
 		}
 		
 		return (

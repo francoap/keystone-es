@@ -118,7 +118,7 @@ var Header = React.createClass({
 							onChange={this.searchStringChanged}
 							onFocus={this.searchFocusChanged.bind(this, true)}
 							onBlur={this.searchFocusChanged.bind(this, false)}
-							placeholder={'Search ' + list.plural}
+							placeholder={'Buscar ' + list.plural}
 							className="form-control searchbox-input"
 						/>
 					</div>
@@ -162,7 +162,7 @@ var Header = React.createClass({
 			<li>
 				<a className="item-toolbar-create-button" href="javascript:;" onClick={this.toggleCreate.bind(this, true)}>
 					<span className="mr-5 ion-plus"></span>
-					New {this.props.list.singular}
+					Nuevo {this.props.list.singular}
 				</a>
 			</li>
 		);
